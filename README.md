@@ -1,2 +1,2 @@
-# spring-boot-data-csv-starter
+# spring-boot-starter-data-csv
 A starter for Spring Boot to manage CSV File
