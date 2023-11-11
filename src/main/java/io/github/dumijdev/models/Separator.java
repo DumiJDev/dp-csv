@@ -1,5 +1,8 @@
 package io.github.dumijdev.models;
 
+import lombok.Getter;
+
+@Getter
 public enum Separator {
     COMMA(","), SEMICOLON(";");
 
@@ -7,9 +10,5 @@ public enum Separator {
 
     Separator(String sep) {
         this.sep = sep;
-    }
-
-    public String getSep() {
-        return null;
     }
 }
