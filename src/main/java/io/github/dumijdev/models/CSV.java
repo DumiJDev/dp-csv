@@ -11,11 +11,12 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @Getter
-public class CSV implements Iterable<Line> {
-    private final List<Line> lines;
+public class CSV implements Iterable<CSVLine> {
+    private CSVHeader header;
+    private final List<CSVLine> lines;
     private final Separator sep;
 
-    public CSV(List<Line> lines) {
+    public CSV(List<CSVLine> lines) {
         this.lines = lines;
         this.sep = Separator.COMMA;
     }
@@ -24,20 +25,30 @@ public class CSV implements Iterable<Line> {
         return new CSV(new LinkedList<>());
     }
 
+    public static CSV noBody(CSVHeader header) {
+        var csv = new CSV(new LinkedList<>());
+        csv.header = header;
+        return csv;
+    }
+
     @Override
-    public Iterator<Line> iterator() {
+    public Iterator<CSVLine> iterator() {
         return lines.iterator();
     }
 
     public void add(String line) {
-        add(new Line(line.split(sep.getSep())));
+        add(new CSVLine(line.split(sep.getSep())));
     }
 
     public void add(String line, Separator sep) {
-        add(new Line(line.split(sep.getSep())));
+        add(new CSVLine(line.split(sep.getSep())));
     }
 
-    public void add(Line line) {
+    public void add(List<CSVColumn> columns) {
+        add(new CSVLine(columns));
+    }
+
+    public void add(CSVLine line) {
         lines.add(line);
     }
 }

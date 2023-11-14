@@ -6,9 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface CSVPath {
-    String path() default "";
-    boolean readOnly() default false;
-    boolean hasHeader() default true;
+@Target(ElementType.FIELD)
+public @interface CSVColumnIgnore {
 }

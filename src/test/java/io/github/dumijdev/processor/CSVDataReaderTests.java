@@ -2,6 +2,8 @@ package io.github.dumijdev.processor;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -51,15 +53,12 @@ public class CSVDataReaderTests {
 
         var csv = reader.read(file);
 
-        for (var line : csv) {
-            System.out.println(line);
-        }
-
         assertFalse(csv.getLines().isEmpty());
 
     }
 
-    @Test
+    @DisplayName("Should throws RuntimeException")
+    @RepeatedTest(20)
     public void shouldThrowsRuntimeException() {
         var reader = new CSVDataReader();
 
