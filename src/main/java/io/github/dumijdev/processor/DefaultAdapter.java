@@ -105,12 +105,7 @@ public class DefaultAdapter implements Adapter {
 
             return LocalDateTime.parse(column.getValue(), formatter);
         } else if (targetType.equals(Date.class)) {
-            try {
-                LocalDateTime localDateTime = LocalDateTime.parse(column.getValue(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSS"));
-                return java.sql.Timestamp.valueOf(localDateTime);
-            } catch (Exception e) {
-                throw new RuntimeException("Erro ao converter para Date: " + e.getMessage(), e);
-            }
+           throw new UnsupportedOperationException();
         } else if (targetType.equals(LocalDate.class)) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             return LocalDate.parse(column.getValue(), formatter);
